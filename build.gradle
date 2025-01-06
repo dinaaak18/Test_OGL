@@ -1,0 +1,61 @@
+plugins {
+    id 'java'
+    id 'jacoco'
+    id("org.sonarqube") version "4.4.0.3356"
+    id 'maven-publish'
+}
+
+group = 'com.example'
+version = '1.0-SNAPSHOT'
+
+
+
+
+publishing {
+    repositories {
+        maven {
+            url 'https://mymavenrepo.com/repo/6FiEtaq9XC0PaOaMFO9O/'
+            credentials {
+                username 'myMavenRepo'
+                password 'dinaaa'
+            }
+        }
+    }
+
+    publications {
+        maven(MavenPublication) {
+            from components.java
+        }
+    }
+}
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation 'io.cucumber:cucumber-java:6.0.0'
+    testImplementation 'io.cucumber:cucumber-junit:6.0.0'
+    testImplementation 'junit:junit:4.12'
+
+}
+
+
+
+test.finalizedBy "jacocoTestReport", "sonar"
+
+
+
+
+
+publish {
+    finalizedBy postBuiltSucceedToSlack
+    finalizedBy sendMail// report is always generated after
+    // run
+}
+
+
+
+
+
+
+
