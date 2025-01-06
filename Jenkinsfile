@@ -21,6 +21,11 @@ pipeline {
                         archiveArtifacts artifacts: 'build/test-results/**/*.xml', allowEmptyArchive: true
                     }
                 }
+        stage('Generate Cucember Reports') {
+                                    steps {
+                                        echo 'Generating reports..'
+                                        sh './gradlew generateCucumberReports'                                    }
+                                }
 
         /*stage('Unit Tests') {
             steps {
