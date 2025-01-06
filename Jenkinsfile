@@ -8,6 +8,12 @@ pipeline {
                 sh './gradlew build'
             }
         }
+        stage('Archive Test Results') {
+            steps {
+                echo 'Archiving test results..'
+                archiveArtifacts artifacts: 'build/test-results/**/*.xml', allowEmptyArchive: true
+            }
+        }
         stage('Unit Tests') {
             steps {
                 echo 'Testing..'
