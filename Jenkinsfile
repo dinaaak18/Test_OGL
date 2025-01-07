@@ -33,13 +33,13 @@ pipeline {
                   steps {
                       echo 'Deploying Project..'
                       sh './gradlew publish'
-                  }
-        }
-        /*stage('Unit Tests') {
-            steps {
-                echo 'Testing..'
-                bat './gradlew sonar'
-            }
-        }*/
+                      }
+                }
+        stage('Notification') {
+               steps {
+                    echo 'Sending Notification..'
+                    sh './gradlew postBuiltSucceedToSlack'
+                    }
+               }
     }
 }
