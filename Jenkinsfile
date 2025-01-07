@@ -22,10 +22,19 @@ pipeline {
                     }
                 }
         stage('Generate Cucember Reports') {
-                                    steps {
-                                        echo 'Generating reports..'
-                                        sh './gradlew generateCucumberReports'                                    }
-                                }
+                     steps {
+                     echo 'Generating reports..'
+                     sh './gradlew generateCucumberReports'                                    }
+                 }
+
+        stage('Build') {
+                     steps {
+                     echo 'Building Project..'
+                     sh './gradlew jar'
+                     sh './gradlew javadoc'
+
+                    }
+                 }
 
         /*stage('Unit Tests') {
             steps {
