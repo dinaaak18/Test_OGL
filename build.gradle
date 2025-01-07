@@ -88,7 +88,7 @@ sendMail {
     mail {
         from "kd_keddour@esi.dz"
         to "keddourdina@gmail.com"
-        body "Hello!!"
+        body "Project Deployed!!"
     }
 }
 
