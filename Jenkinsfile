@@ -54,7 +54,7 @@ pipeline {
                steps {
                     echo 'Sending Notification..'
                     sh './gradlew sendMail'
-                    sh './gradlew postBuiltSuccedToSlack'
+                    sh './gradlew postBuiltSucceedToSlack'
                     }
                }
     }
