@@ -9,23 +9,16 @@ pipeline {
             }
         }
 
-        stage('Unit Tests') {
+        stage('Test') {
             steps {
                 echo 'Testing..'
                 sh './gradlew test'
+                echo 'Archiving test results..'
+                archiveArtifacts artifacts: 'build/test-results/**/*.xml', allowEmptyArchive: true
+                echo 'Generating reports..'
+                sh './gradlew generateCucumberReports'
             }
         }
-        stage('Archive Test Results') {
-                    steps {
-                        echo 'Archiving test results..'
-                        archiveArtifacts artifacts: 'build/test-results/**/*.xml', allowEmptyArchive: true
-                    }
-                }
-        stage('Generate Cucember Reports') {
-                     steps {
-                     echo 'Generating reports..'
-                     sh './gradlew generateCucumberReports'                                    }
-                 }
 
         stage('Build Project') {
                      steps {
