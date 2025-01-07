@@ -61,7 +61,7 @@ test.finalizedBy "jacocoTestReport"
 slack {
 
     builtSucceed {
-        webHook = "https://hooks.slack.com/services/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"
+        webHook = System.getenv('webhook')
         attachment {
             fallback = "Project successfully built."
             pretext = "Project successfully built."
