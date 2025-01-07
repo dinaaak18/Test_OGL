@@ -23,7 +23,7 @@ pipeline {
             steps {
                 echo 'Analyzing code quality with SonarQube..'
                 withSonarQubeEnv('sonar') {
-                   bat './gradlew sonarqube'  // Execute SonarQube analysis
+                   sh './gradlew sonarqube'  // Execute SonarQube analysis
                 }
             }
             }
