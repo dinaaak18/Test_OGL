@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     stages {
-        stage('Build') {
+        stage('Start') {
             steps {
                 echo 'Building..'
                 sh './gradlew build'
@@ -20,7 +20,7 @@ pipeline {
             }
         }
 
-        stage('Build Project') {
+        stage('Build') {
                      steps {
                      echo 'Building Project..'
                      sh './gradlew jar'
@@ -29,7 +29,12 @@ pipeline {
                     archiveArtifacts artifacts: '**/build/libs/TP5-1.0-SNAPSHOT.jar, **/build/tmp/javadoc/**/*', fingerprint: true
                     }
                  }
-
+        stage('Deploy') {
+                  steps {
+                      echo 'Deploying Project..'
+                      sh './gradlew publish'
+                  }
+        }
         /*stage('Unit Tests') {
             steps {
                 echo 'Testing..'
