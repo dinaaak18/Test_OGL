@@ -52,7 +52,7 @@ test.finalizedBy "jacocoTestReport"
 slack {
 
     builtSucceed {
-        webHook = "https://hooks.slack.com/services/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"
+        webHook = "https://hooks.slack.com/services/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"
         attachment {
             fallback = "Project successfully built."
             pretext = "Project successfully built."
@@ -73,7 +73,6 @@ slack {
 
 
 publish {
-
 }
 
 
