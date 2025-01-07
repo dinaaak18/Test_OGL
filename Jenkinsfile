@@ -27,7 +27,7 @@ pipeline {
                      sh './gradlew generateCucumberReports'                                    }
                  }
 
-        stage('Build') {
+        stage('Build Project') {
                      steps {
                      echo 'Building Project..'
                      sh './gradlew jar'
