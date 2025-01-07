@@ -50,11 +50,11 @@ pipeline {
                       sh './gradlew publish'
                       }
                 }
-        /*stage('Notification') {
+        stage('Notification') {
                steps {
                     echo 'Sending Notification..'
-                    sh './gradlew postBuiltSucceedToSlack'
+                    sh './gradlew sendMail'
                     }
-               }*/
+               }
     }
 }

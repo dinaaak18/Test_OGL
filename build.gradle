@@ -4,6 +4,7 @@ plugins {
     id("org.sonarqube") version "4.4.0.3356"
     id "com.github.spacialcircumstances.gradle-cucumber-reporting" version "0.1.25"
     id 'maven-publish'
+    id 'de.zebrajaeger.sendMail' version("0.1.1")
     id("io.github.oleksiiparf.slack-webhook") version "1.0.0"
 }
 
@@ -75,6 +76,19 @@ slack {
                 shortValue = true
             }
         }
+    }
+}
+sendMail {
+    smtpServer {
+        host "smtp.gmail.com"
+        port 587
+        user "kd_keddour@esi.dz"
+        password "jzlk vikl kimq drws"
+    }
+    mail {
+        from "kd_keddour@esi.dz"
+        to "keddourdina@gmail.com"
+        body "Hello!!"
     }
 }
 
