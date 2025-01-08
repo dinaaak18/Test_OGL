@@ -14,6 +14,15 @@ pipeline {
                 echo 'Generating reports..'
                 sh './gradlew generateCucumberReports'
             }
+            post {
+                                    failure {
+                                    mail to: 'keddourdina@gmail.com',
+                                         from: 'kd_keddour@esi.dz',
+                                         subject: 'Build failed',
+                                         body: 'Test failed.'
+
+                                    }
+                                }
         }
         stage('Code Analysis') {
             steps {
@@ -22,6 +31,15 @@ pipeline {
                    sh './gradlew sonarqube'  // Execute SonarQube analysis
                 }
             }
+            post {
+                                    failure {
+                                    mail to: 'keddourdina@gmail.com',
+                                         from: 'kd_keddour@esi.dz',
+                                         subject: 'Analyse failed',
+                                         body: 'Analyse failed.'
+
+                                    }
+                                }
             }
 
         stage('Quality Gate') {
@@ -30,6 +48,15 @@ pipeline {
             // Wait for the SonarQube analysis to complete and check the quality gate status
             waitForQualityGate abortPipeline: true  // If the gate fails, the pipeline will be aborted
             }
+            post {
+                                    failure {
+                                    mail to: 'keddourdina@gmail.com',
+                                         from: 'kd_keddour@esi.dz',
+                                         subject: 'Gate failed',
+                                         body: 'Gate failed.'
+
+                                    }
+                                }
            }
         stage('Build') {
                      steps {
@@ -39,12 +66,31 @@ pipeline {
                     echo 'Archiving Artifacts...'
                     archiveArtifacts artifacts: '**/build/libs/TP5-1.0-SNAPSHOT.jar, **/build/tmp/javadoc/**/*', fingerprint: true
                     }
+                    post {
+                        failure {
+                        mail to: 'keddourdina@gmail.com',
+                             from: 'kd_keddour@esi.dz',
+                             subject: 'Build failed',
+                             body: 'Build failed.'
+
+                        }
+                    }
                  }
+
         stage('Deploy') {
                   steps {
                       echo 'Deploying Project..'
                       sh './gradlew publish'
                       }
+                      post {
+                                              failure {
+                                              mail to: 'keddourdina@gmail.com',
+                                                   from: 'kd_keddour@esi.dz',
+                                                   subject: 'Deploy failed',
+                                                   body: 'Deploy failed.'
+
+                                              }
+                                          }
                 }
         stage('Notification') {
                steps {
