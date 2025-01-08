@@ -12,7 +12,7 @@ pipeline {
                 echo 'Archiving test results..'
                 archiveArtifacts artifacts: 'build/test-results/**/*.xml', allowEmptyArchive: true
                 echo 'Generating reports..'
-                sh './gradlew generateCucumberReports'
+                cucumber '**/reports/example-report.json'
             }
             post {
                                     failure {
@@ -99,6 +99,8 @@ pipeline {
                     from: 'kd_keddour@esi.dz',
                     subject: 'Deploy success',
                     body: 'Project succefully deployed'
+
+
                     slackSend channel: '#all-ogl',message: 'Project succefully deployed'
 
 
