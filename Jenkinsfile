@@ -7,6 +7,7 @@ pipeline {
         stage('Test') {
             steps {
                 echo 'Testing..'
+                sh './gradlew build'
                 sh './gradlew test'
                 echo 'Archiving test results..'
                 archiveArtifacts artifacts: 'build/test-results/**/*.xml', allowEmptyArchive: true
