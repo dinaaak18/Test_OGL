@@ -53,6 +53,7 @@ pipeline {
                     from: 'kd_keddour@esi.dz',
                     subject: 'Deploy success',
                     body: 'Project succefully deployed'
+                    slackSend channel: '#all-ogl',message: 'Project succefully deployed'
 
 
 
