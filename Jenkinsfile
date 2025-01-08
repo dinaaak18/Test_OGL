@@ -53,8 +53,7 @@ pipeline {
         stage('Notification') {
                steps {
                     echo 'Sending Notification..'
-                    sh './gradlew sendMail'
-                    sh './gradlew postBuiltSucceedToSlack'
+                    mail bcc: '', body: 'Project succefully deployed', cc: '', from: 'kd_keddour@esi.dz', replyTo: '', subject: 'Deploy success', to: 'keddourdina@gmail.com'                    sh './gradlew postBuiltSucceedToSlack'
                     }
                }
     }
